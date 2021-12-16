@@ -14,8 +14,36 @@ function pickCity(event) {
   search(inputCity.value);
 }
 
+//calculate the date of last weather update
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    minutes = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day}, ${hours}:${minutes}`;
+}
+
 //Weather API request when user types the city
+
 function showWeather(response) {
+  let dateElement = document.querySelector("#date");
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+
   temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector("h1");
   temperatureElement.innerHTML = `${temperature}°`;
@@ -69,42 +97,5 @@ form.addEventListener("submit", pickCity);
 search("London");
 showCelcius();
 ///////////////////////////////////////////////////////////////
-// Clock and Date - Displays date and time in h3
-let now = new Date();
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
 
-let months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "Novermber",
-  "December",
-];
-
-let day = days[now.getDay()];
-let month = months[now.getMonth()];
-let date = now.getDate();
-let minutes = now.getMinutes();
-let hours = now.getHours();
-
-let time = `${hours}:${minutes} ${day}, ${month} ${date}`;
-
-let h3 = document.querySelector("h3");
-h3.innerHTML = time;
-//////////////////////////////////////////////////////////////////
 //END
