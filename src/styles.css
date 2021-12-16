@@ -12,7 +12,6 @@ body {
 
 h1 {
   font-weight: bold;
-  padding-top: 12px;
   font-family: "Open Sans", sans-serif;
   line-height: 1;
 }
@@ -28,7 +27,7 @@ h2 {
   font-weight: bolder;
 }
 h3 {
-  padding-bottom: 5%;
+  padding-bottom: 15%;
   font-size: 15px;
 }
 
@@ -96,7 +95,7 @@ form {
   text-align: center;
   height: 80px;
   border-radius: 55px;
-  margin: 15px auto;
+  margin: 15px auto -10px auto;
 }
 
 .row {
@@ -127,6 +126,9 @@ form {
   font-size: 15px;
   display: inline;
   cursor: pointer;
+}
+.conversion .active {
+  font-weight: bolder;
 }
 
 #user-city {
