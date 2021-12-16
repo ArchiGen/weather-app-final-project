@@ -18,6 +18,13 @@ function pickCity(event) {
     let wind = Math.round(response.data.wind.speed);
     let windElement = document.querySelector("#wind");
     windElement.innerHTML = `${wind}km/h`;
+
+    let currentIcon = response.data.weather[0].icon;
+    let currentIconElement = document.querySelector("#current-icon");
+    currentIconElement.setAttribute(
+      "src",
+      `http://openweathermap.org/img/wn/${currentIcon}@2x.png`
+    );
   }
 
   let apiKey = "8faec0e45e93e61e880c60b71662661c";
