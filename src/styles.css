@@ -66,6 +66,11 @@ li {
   text-align: left;
 }
 
+form {
+  display: block;
+  margin: 10px auto;
+}
+
 .container {
   display: block;
   margin: 50px auto 10px auto;
@@ -110,9 +115,11 @@ li {
   padding-top: 2%;
 }
 
-form {
-  display: block;
-  margin: 10px auto;
+.conversion {
+  line-height: 1;
+  position: relative;
+  top: -30px;
+  left: 40%;
 }
 
 #farenheit,
@@ -120,13 +127,6 @@ form {
   font-size: 15px;
   display: inline;
   cursor: pointer;
-}
-
-span {
-  line-height: 1;
-  position: relative;
-  top: -30px;
-  left: 40%;
 }
 
 #user-city {
