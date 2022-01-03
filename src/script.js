@@ -66,7 +66,7 @@ function displayForecast(response) {
   <div class="col-4 data" >${formatDay(forecastDay.dt)}</div>
   <div class="col-4 data"><strong>${Math.round(
     forecastDay.temp.day
-  )}°</strong>/${Math.round(forecastDay.temp.night)}°</div>
+  )}°</strong>/${Math.round(forecastDay.temp.night)}°C</div>
   <div class="col-4 data"><img src="http://openweathermap.org/img/wn/${
     forecastDay.weather[0].icon
   }@2x.png" height="35px"></div>
