@@ -59,7 +59,7 @@ function displayForecast(response) {
   let forecastElement = document.querySelector("#forecastWeather");
   let forecastHTML = "";
   forecast.forEach(function (forecastDay, index) {
-    if (index < 5) {
+    if (index > 0 && index < 6) {
       forecastHTML =
         forecastHTML +
         `<div class="row g-0 forecast">
@@ -88,6 +88,9 @@ function getForecast(coordinates) {
 //Weather API request when user types the city
 
 function showWeather(response) {
+  let descriptionElement = document.querySelector("#description");
+  descriptionElement.innerHTML = response.data.weather[0].description;
+
   let dateElement = document.querySelector("#date");
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
 
@@ -101,7 +104,7 @@ function showWeather(response) {
 
   let wind = Math.round(response.data.wind.speed);
   let windElement = document.querySelector("#wind");
-  windElement.innerHTML = `${wind}km/h`;
+  windElement.innerHTML = `${wind}m/h`;
 
   let currentIcon = response.data.weather[0].icon;
   let currentIconElement = document.querySelector("#current-icon");

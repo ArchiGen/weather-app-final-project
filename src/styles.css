@@ -28,7 +28,7 @@ h2 {
 }
 h3 {
   padding-bottom: 15%;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 img {
@@ -74,7 +74,7 @@ form {
   display: block;
   margin: 50px auto 10px auto;
   text-align: center;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.6);
   border-radius: 40px;
   padding-right: 3%;
   padding-left: 3%;
@@ -143,6 +143,14 @@ form {
   padding-left: 1%;
   padding-right: 1%;
   border: solid 2px rgba(0, 0, 0, 0.25);
+}
+
+.description {
+  display: block;
+}
+
+.description::first-letter {
+  text-transform: uppercase;
 }
 
 #current-loc-button {
