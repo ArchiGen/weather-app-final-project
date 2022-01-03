@@ -38,6 +38,53 @@ function formatDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  return days[day];
+}
+
+//Forecast weather
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecastWeather");
+  let forecastHTML = "";
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `<div class="row g-0 forecast">
+  <div class="col-4 data" >${formatDay(forecastDay.dt)}</div>
+  <div class="col-4 data"><strong>${Math.round(
+    forecastDay.temp.day
+  )}°</strong>/${Math.round(forecastDay.temp.night)}°</div>
+  <div class="col-4 data"><img src="http://openweathermap.org/img/wn/${
+    forecastDay.weather[0].icon
+  }@2x.png" height="35px"></div>
+  </div>`;
+
+      forecastElement.innerHTML = forecastHTML;
+    }
+  });
+}
+
+//Getting coordinates
+function getForecast(coordinates) {
+  let apiKey = "8faec0e45e93e61e880c60b71662661c";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric
+`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 //Weather API request when user types the city
 
 function showWeather(response) {
@@ -62,6 +109,8 @@ function showWeather(response) {
     "src",
     `http://openweathermap.org/img/wn/${currentIcon}@2x.png`
   );
+
+  getForecast(response.data.coord);
 }
 
 ///////////////////////////////////////////////////////////////
@@ -95,6 +144,7 @@ let temperatureElement = document.querySelector("h1");
 let form = document.querySelector("#city-form");
 form.addEventListener("submit", pickCity);
 search("London");
+displayForecast();
 showCelcius();
 ///////////////////////////////////////////////////////////////
 
